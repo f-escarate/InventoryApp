@@ -12,7 +12,6 @@ const homeName = 'Home';
 const scanName = 'Scan';
 const pantryName = 'Pantry';
 
-
 const Tab = createBottomTabNavigator();
 
 export default function MainContainer() {
@@ -53,12 +52,11 @@ export default function MainContainer() {
         } ) } 
         >
             
-        <Tab.Screen name={homeName} component={HomeScreen}/>
         <Tab.Screen name={scanName} component={ScanScreen}/>
+        <Tab.Screen name={homeName} component={HomeScreen}/>
         <Tab.Screen name={pantryName} component={PantryScreen}/>
 
-        </Tab.Navigator>
-        
+        </Tab.Navigator>  
     </NavigationContainer>
   );
 }
