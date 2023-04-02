@@ -11,20 +11,19 @@
 2. Install some dependencies
 
     ```
-    npm install @react-navigation/stack
     npm install @react-navigation/native
-    npm install react-native-table-component
+    npm install @react-navigation/bottom-tabs
     npm install react-async
+    npm install react-native-table-component
+    npm install @react-navigation/stack
+    npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
     ```
 
-3. Start the backend
+3. Start the backend (in Backend folder)
     ```
-    cd backend
-    go run main.go
-    cd ..
     ```
 
-4. Start the frontend
+4. Start the frontend (in Frontend folder)
 
     `npm start`
 
@@ -36,4 +35,8 @@
 
 *  Just run:
 
-    `mongod --port 27017 --dbpath PathWhereTheRepoIsStored\InventoryApp\DB`
+    `mongod --port 27017 --dbpath PathWhereTheRepoIsStored\InventoryApp\Backend\DB`
+
+## Build
+
+    `eas build -p android --profile preview`
