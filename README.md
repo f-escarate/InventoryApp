@@ -19,6 +19,11 @@
     npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
     ```
 
+    And for web debugging:
+    ```
+    npx expo install react-native-web@~0.18.10 react-dom@18.2.0 @expo/webpack-config@^18.0.1
+    ```
+
 3. Start the backend (in Backend folder)
     ```
     ```

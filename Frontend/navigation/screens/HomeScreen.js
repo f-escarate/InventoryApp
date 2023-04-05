@@ -23,24 +23,28 @@ const Stack = createStackNavigator();
 function Menu({ navigation }) {
   return(
     <View style={styles.container}>
-      <Text>
-        Home Screen
-        {'\n'}
-        {'\n'}
-      </Text>
-      <TouchableNativeFeedback
-        onPress={() => navigation.navigate(' About to expire')}
-      >
-        <Text>Check products about to expire</Text>
-      </TouchableNativeFeedback>
+      <Tables navigation={navigation} />
     </View>
   )
 }
 
-function AboutToExpire() {
+function Tables({ navigation }){
   return (
-      <View style={styles.container}>
-      <Text>Products about to expire</Text>
+    <View>
+      <TouchableNativeFeedback
+        onPress={() => navigation.navigate(' About to expire')}
+      >
+        <View><AboutToExpire anStyle = {styles.subTable}/></View>
+      </TouchableNativeFeedback>
+
+    </View>
+  )
+}
+
+function AboutToExpire({anStyle = styles.container}) {
+  return (
+    <View style={anStyle}>
+      <Text style={styles.title}>Products about to expire</Text>
       <QueryTable query='/aboutToExpire'/>
     </View>
   );
