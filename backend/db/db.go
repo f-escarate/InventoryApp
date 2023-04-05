@@ -14,6 +14,7 @@ type Product struct {
 	ID             primitive.ObjectID `bson:"_id"`
 	Name           string             `bson:"name"`
 	ExpirationDate primitive.DateTime `bson:"expiration-date"`
+	Quantity       int                `bson:"quantity"`
 }
 
 var collection *mongo.Collection

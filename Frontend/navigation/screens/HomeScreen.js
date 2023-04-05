@@ -37,6 +37,11 @@ function Tables({ navigation }){
         <View><AboutToExpire anStyle = {styles.subTable}/></View>
       </TouchableNativeFeedback>
 
+      <TouchableNativeFeedback 
+        onPress={() => navigation.navigate(' Out of stock')}
+      >
+        <View><OutOfStock anStyle = {styles.subTable}/></View>
+      </TouchableNativeFeedback>
     </View>
   )
 }
@@ -50,11 +55,21 @@ function AboutToExpire({anStyle = styles.container}) {
   );
 }
 
+function OutOfStock({anStyle = styles.container}) {
+  return (
+    <View style={anStyle}>
+      <Text style={styles.title}>Products out of stock</Text>
+      <QueryTable query='/outOfStock'/>
+    </View>
+  );
+}
+
 function MyStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name=" Menu" component={Menu} />
       <Stack.Screen name=" About to expire" component={AboutToExpire} />
+      <Stack.Screen name=" Out of stock" component={OutOfStock} />
     </Stack.Navigator>
   );
 }
@@ -72,7 +87,7 @@ const QueryTable = ({ query }) => {
   const theadData = Object.keys(data[0])
   const tBodyData = data.map((row, index) => {
     let date = new Date(row.ExpirationDate)
-    return [index, row.Name, date.toISOString().split('T')[0]]
+    return [index, row.Name, date.toISOString().split('T')[0], row.Quantity]
   })
 
   return (

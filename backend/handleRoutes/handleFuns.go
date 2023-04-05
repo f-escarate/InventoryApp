@@ -83,7 +83,6 @@ func filterByName(w http.ResponseWriter, r *http.Request) {
 Gets the products about to expire depending on a threshold
 */
 func getAboutToExpire(w http.ResponseWriter, r *http.Request) {
-
 	var daysToExpireThreshold int = 14
 
 	filter := bson.M{"expiration-date": bson.M{
@@ -111,6 +110,34 @@ func getAboutToExpire(w http.ResponseWriter, r *http.Request) {
 	w.Write(b)
 }
 
+/*
+Gets the products out of stock (quantity = 0)
+*/
+func getOutOfStock(w http.ResponseWriter, r *http.Request) {
+	filter := bson.M{"quantity": bson.M{
+		"$eq": 0,
+	}}
+
+	list, err := db.FilterProducts(filter)
+
+	if len(list) == 0 {
+		w.Write([]byte("There aren't products out of stock"))
+		return
+	}
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	b, err := json.Marshal(list)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	enableCors(&w)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(b)
+}
+
 /* ----------------------------------------------------------- */
 
 // Variable used by main.go to check what function corresponds to each route
@@ -118,4 +145,5 @@ var Routes []RouteFun = []RouteFun{
 	{"/all", getAll},
 	{"/filterByName", filterByName},
 	{"/aboutToExpire", getAboutToExpire},
+	{"/outOfStock", getOutOfStock},
 }
