@@ -6,17 +6,16 @@
 
 1. Install Expo
 
-    `npm install -g expo-cli`
+    ```
+    npm install -g expo-cli
+    ```
 
 2. Install some dependencies
 
     ```
-    npm install @react-navigation/native
-    npm install @react-navigation/bottom-tabs
-    npm install react-async
-    npm install react-native-table-component
-    npm install @react-navigation/stack
-    npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+    npm install @react-navigation/native @react-navigation/bottom-tabs react-async react-native-table-component @react-navigation/stack react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+    
+    npm install react-native-reanimated@2.14.4
     ```
 
     And for web debugging:
@@ -40,7 +39,7 @@
 
 *  Just run:
 
-    `mongod --port 27017 --dbpath PathWhereTheRepoIsStored\InventoryApp\Backend\DB`
+    `mongod --port 27017 --dbpath PathWhereTheRepoIsStored\InventoryApp\Backend\db`
 
 ## Build
 

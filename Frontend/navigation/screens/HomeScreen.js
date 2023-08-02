@@ -1,14 +1,11 @@
 import * as React from 'react'
-import { useFetch } from "react-async"
 import { View, Text, TouchableNativeFeedback } from 'react-native'
-import { Table, Row, Rows } from 'react-native-table-component';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import styles from '../Styles';
 import { NavigationContainer } from '@react-navigation/native';
+import { QueryTable } from './QueryTable'
+import styles from '../Styles';
 
-
-var host = 'http://192.168.1.116:3000'
 
 export default function HomeScreen({ navigation }) {
     return (
@@ -72,30 +69,4 @@ function MyStack() {
       <Stack.Screen name=" Out of stock" component={OutOfStock} />
     </Stack.Navigator>
   );
-}
-
-/*
-  Gives a table requesting data from the API-REST made in Golang
-*/
-const QueryTable = ({ query }) => {
-  const { data, error } = useFetch(`${host}${query}`, {
-    headers: { accept: "application/json" },
-  })
-  if (error) return (<Text>{error.message}</Text>)
-  if (data) {
-
-  const theadData = Object.keys(data[0])
-  const tBodyData = data.map((row, index) => {
-    let date = new Date(row.ExpirationDate)
-    return [index, row.Name, date.toISOString().split('T')[0], row.Quantity]
-  })
-
-  return (
-    <Table style={styles.tableStyle} borderStyle={styles.tableBorder} >
-      <Row key={"head"} data={theadData}/>
-      <Rows data={tBodyData} />
-    </Table>
-  );
-  }
-  return null
 }
