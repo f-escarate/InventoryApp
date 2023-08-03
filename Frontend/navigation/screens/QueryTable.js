@@ -1,5 +1,6 @@
 import { useFetch } from "react-async"
 import { Table, Row, Rows } from 'react-native-table-component';
+import { Text } from 'react-native'
 import styles from '../Styles';
 
 var host = 'http://192.168.100.34:3000'

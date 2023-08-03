@@ -13,9 +13,10 @@
 2. Install some dependencies
 
     ```
-    npm install @react-navigation/native @react-navigation/bottom-tabs react-async react-native-table-component @react-navigation/stack react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+    npm install @react-navigation/native @react-navigation/bottom-tabs react-async react-native-table-component @react-navigation/stack react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view react-native-modal
     
     npm install react-native-reanimated@2.14.4
+    expo install @react-native-community/datetimepicker
     ```
 
     And for web debugging:

@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       justifyContent: 'center',
       textAlign: 'center',
-      alignContent: 'center'
+      alignContent: 'center',
+      margin: 10
     },
     title: {
       fontSize: 16,
@@ -14,12 +15,20 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginTop: 10
     },
-
     text: {
       marginLeft: 2
     },
-    tableBorder: {borderWidth: 3, borderColor: 'black'},
-    tableStyle: { flex: 0, margin: 10 },
+
+    tableBorder: {
+      borderWidth: 3,
+      borderColor: 'black'
+    },
+    tableStyle: {
+      flex: 0,
+      margin: 10,
+      alignContent: 'center',
+      textAlign: 'center'
+    },
     subTable: {
       flex: 0,
       backgroundColor: 'gray',
