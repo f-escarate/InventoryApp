@@ -3,8 +3,10 @@ package handleRoutes
 import (
 	"backend/db"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -138,6 +140,41 @@ func getOutOfStock(w http.ResponseWriter, r *http.Request) {
 	w.Write(b)
 }
 
+func checkISODate(date string) (primitive.DateTime, bool) {
+	d, err := time.Parse(time.RFC3339, date)
+
+	if err != nil {
+		return primitive.DateTime(0), false
+	}
+	return primitive.NewDateTimeFromTime(d), true
+
+}
+
+/*
+Adds one item to the database
+*/
+func addItem(w http.ResponseWriter, r *http.Request) {
+	// Parameters
+	name := r.URL.Query()["Name"][0]
+	quantity, q_err := strconv.ParseInt(r.URL.Query()["Quantity"][0], 10, 0)
+	exprDate := r.URL.Query()["ExprDate"][0]
+	// Validation
+	date, dateIsISO := checkISODate(exprDate)
+	var msg []byte
+	if len(name) < 10 || q_err != nil || !dateIsISO {
+		fmt.Println("error")
+		msg = []byte("Failed")
+	} else {
+		fmt.Println(quantity, name, "have been added with expiration date:", exprDate)
+		msg = []byte("Success")
+		db.AddProduct(name, date, int(quantity))
+	}
+	// Response
+	enableCors(&w)
+	w.Header().Set("Content-Type", "text/plain")
+	w.Write(msg)
+}
+
 /* ----------------------------------------------------------- */
 
 // Variable used by main.go to check what function corresponds to each route
@@ -146,4 +183,5 @@ var Routes []RouteFun = []RouteFun{
 	{"/filterByName", filterByName},
 	{"/aboutToExpire", getAboutToExpire},
 	{"/outOfStock", getOutOfStock},
+	{"/addItem", addItem},
 }

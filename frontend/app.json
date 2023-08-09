@@ -1,0 +1,33 @@
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "production": {}
+  },
+  "extra": {
+    "eas": {
+      "projectId": "fd658b3d-f2ad-4523-93d1-d223e66654f4"
+    }
+  },
+  "expo": {
+    "android": {
+      "package": "com.fescarate.inventoryapp"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fd658b3d-f2ad-4523-93d1-d223e66654f4"
+      }
+    }
+  }
+}

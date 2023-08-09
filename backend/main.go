@@ -11,6 +11,7 @@ func main() {
 	fmt.Println("Starting the server")
 	db.InitDB()
 	setRoutes()
+	fmt.Println("Receiving Requests")
 	recv()
 }
 

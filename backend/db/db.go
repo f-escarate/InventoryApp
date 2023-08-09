@@ -80,6 +80,15 @@ func FilterProducts(filter interface{}, options ...*options.FindOptions) ([]*Pro
 	return products, nil
 }
 
+/*
+Adds a product to the database
+*/
+func AddProduct(name string, expirationDate primitive.DateTime, quantity int) (*mongo.InsertOneResult, error) {
+	element := Product{ID: primitive.NewObjectID(), Name: name, ExpirationDate: expirationDate, Quantity: quantity}
+	result, err := collection.InsertOne(context.TODO(), element)
+	return result, err
+}
+
 func GetAll() ([]*Product, error) {
 	// passing bson.D{{}} matches all documents in the collection
 	filter := bson.D{{}}

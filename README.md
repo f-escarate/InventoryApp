@@ -24,24 +24,34 @@
     npx expo install react-native-web@~0.18.10 react-dom@18.2.0 @expo/webpack-config@^18.0.1
     ```
 
-3. Start the backend (in Backend folder)
+3. Start the backend:
+
+    * First, start MongoDB using:
     ```
+    mongod --port 27017 --dbpath PathWhereTheRepoIsStored\InventoryApp\DB
+    ```
+    * Then, in backend folder, start the Golang main file:
+    ```
+    go run main.go
     ```
 
-4. Start the frontend (in Frontend folder)
+4. Start the frontend (in frontend folder)
 
-    `npm start`
+    `expo start`
 
     Or
 
-    `npm start --android`
-
-## Mongo Setup
-
-*  Just run:
-
-    `mongod --port 27017 --dbpath PathWhereTheRepoIsStored\InventoryApp\Backend\db`
+    `expo start --android`
 
 ## Build
 
-    `eas build -p android --profile preview`
+`eas build -p android --profile preview`
+
+## Warnings solutions
+I had a warning in the component Row from 'react-native-table-component', that was solved changing the line 29 of the rows.js file from this:
+
+`textStyle={[cellTextStyle && cellTextStyle(item), textStyle]}`
+
+to this:
+
+`textStyle={{...(cellTextStyle ? cellTextStyle(item) : {}), ...textStyle}}`
